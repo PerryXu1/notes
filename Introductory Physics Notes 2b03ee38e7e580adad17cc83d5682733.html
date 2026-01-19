@@ -1,0 +1,713 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Introductory Physics Notes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2b03ee38-e7e5-80ad-ad17-cc83d5682733" class="page sans"><header><img class="page-cover-image" src="Introductory%20Physics%20Notes/Messier-51.jpg" style="object-position:center 41.53%"/><h1 class="page-title" dir="auto">Introductory Physics Notes</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><blockquote id="2b03ee38-e7e5-8023-b14c-f68e977c4391" class="">Physics notes that I took before university. These are from an open-source university-level physics textbook I found online, and range from the basics of classical physics to electromagnetism to a high-ish level overview of quantum mechanics! Enjoy reading!</blockquote></div><div style="display:contents" dir="ltr"><figure id="23c473fd-e2b5-44ae-9edf-94c3c0d69edc" class="link-to-page"><a href="Introductory%20Physics%20Notes/Introduction%2023c473fde2b544ae9edf94c3c0d69edc.html"><img class="icon" src="Introductory%20Physics%20Notes/Introduction/pendulum_(1).png"/>Introduction</a></figure></div><div style="display:contents" dir="ltr"><figure id="248b38fd-d206-4dba-b3cf-7fc3387ea4d9" class="link-to-page"><a href="Introductory%20Physics%20Notes/Units%20and%20Measurement%20248b38fdd2064dbab3cf7fc3387ea4d9.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/ruler_gray.svg"/>Units and Measurement</a></figure></div><div style="display:contents" dir="ltr"><figure id="9bf04169-a218-48db-83a4-a948838b850d" class="link-to-page"><a href="Introductory%20Physics%20Notes/Scalars%20and%20Vectors%209bf04169a21848db83a4a948838b850d.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/upward_gray.svg"/>Scalars and Vectors</a></figure></div><div style="display:contents" dir="ltr"><figure id="e604b8aa-6ad6-45db-9df9-aa98f446a672" class="link-to-page"><a href="Introductory%20Physics%20Notes/1D%20Kinematics%20e604b8aa6ad645db9df9aa98f446a672.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/arrows-horizontal_gray.svg"/>1D Kinematics</a></figure></div><div style="display:contents" dir="ltr"><figure id="cc0cea41-3538-41a0-80b5-82877a7a25dd" class="link-to-page"><a href="Introductory%20Physics%20Notes/2D%20Kinematics%20cc0cea41353841a080b582877a7a25dd.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/skip-forward_gray.svg"/>2D Kinematics</a></figure></div><div style="display:contents" dir="ltr"><figure id="faa44724-1015-49d9-9d1a-7f5baf21329e" class="link-to-page"><a href="Introductory%20Physics%20Notes/Dynamics%20faa44724101549d99d1a7f5baf21329e.html"><img class="icon" src="Introductory%20Physics%20Notes/Dynamics/formula.png"/>Dynamics</a></figure></div><div style="display:contents" dir="ltr"><figure id="341f4959-b006-4c79-8765-6438f9cf6067" class="link-to-page"><a href="Introductory%20Physics%20Notes/Work,%20Energy,%20and%20Power%20341f4959b0064c7987656438f9cf6067.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/fireworks_gray.svg"/>Work, Energy, and Power</a></figure></div><div style="display:contents" dir="ltr"><figure id="7892aca7-f9b3-4b4d-bfd8-375b84048c03" class="link-to-page"><a href="Introductory%20Physics%20Notes/Linear%20Momentum%20and%20Collisions%207892aca7f9b34b4dbfd8375b84048c03.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/bowling_gray.svg"/>Linear Momentum and Collisions</a></figure></div><div style="display:contents" dir="ltr"><figure id="d21bb180-f665-4116-a05d-9aae06673230" class="link-to-page"><a href="Introductory%20Physics%20Notes/Fixed-Axis%20Rotation%20d21bb180f6654116a05d9aae06673230.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/sync-reverse_gray.svg"/>Fixed-Axis Rotation</a></figure></div><div style="display:contents" dir="ltr"><figure id="a9254a97-1827-4aca-b486-8a18d5dcec99" class="link-to-page"><a href="Introductory%20Physics%20Notes/Angular%20Momentum%20a9254a9718274acab4868a18d5dcec99.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/iterate_gray.svg"/>Angular Momentum</a></figure></div><div style="display:contents" dir="ltr"><figure id="d6d1b2c5-cd69-4148-924f-cf4da413990d" class="link-to-page"><a href="Introductory%20Physics%20Notes/Static%20Equilibrium%20and%20Elasticity%20d6d1b2c5cd694148924fcf4da413990d.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/condense_gray.svg"/>Static Equilibrium and Elasticity</a></figure></div><div style="display:contents" dir="ltr"><figure id="0299c5e3-8bbf-4b29-88bc-2170d227e8d7" class="link-to-page"><a href="Introductory%20Physics%20Notes/Gravitation%200299c5e38bbf4b2988bc2170d227e8d7.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/orbit_gray.svg"/>Gravitation</a></figure></div><div style="display:contents" dir="ltr"><figure id="ae3670f6-c7b0-46e5-8981-80f49d2c7ef3" class="link-to-page"><a href="Introductory%20Physics%20Notes/Fluid%20Mechanics%20ae3670f6c7b046e5898180f49d2c7ef3.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/water_gray.svg"/>Fluid Mechanics</a></figure></div><div style="display:contents" dir="ltr"><figure id="48247d66-ff71-495f-8b47-864d8564269f" class="link-to-page"><a href="Introductory%20Physics%20Notes/Oscillations%2048247d66ff71495f8b47864d8564269f.html"><img class="icon" src="Introductory%20Physics%20Notes/Oscillations/pendulum.png"/>Oscillations</a></figure></div><div style="display:contents" dir="ltr"><figure id="cbcfa0f1-22e8-4f32-93c7-330d9aef1371" class="link-to-page"><a href="Introductory%20Physics%20Notes/Waves%20cbcfa0f122e84f3293c7330d9aef1371.html"><img class="icon" src="Introductory%20Physics%20Notes/Waves/radio-waves.png"/>Waves</a></figure></div><div style="display:contents" dir="ltr"><figure id="50a8e28a-4acb-4331-bf55-46e8bfd9f1c3" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Sound%2050a8e28a4acb4331bf5546e8bfd9f1c3.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/volume-high_gray.svg"/>Sound</a></figure></div><div style="display:contents" dir="ltr"><figure id="d625cf75-98d1-454c-ba5a-7e5b8c97a5f6" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Temperature%20and%20Heat%20d625cf7598d1454cba5a7e5b8c97a5f6.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/temperature-warm_gray.svg"/>Temperature and Heat</a></figure></div><div style="display:contents" dir="ltr"><figure id="0fadfb9c-3cdf-4726-be94-72fd648e1cb6" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Kinetic%20Theory%20of%20Gases%200fadfb9c3cdf4726be9472fd648e1cb6.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/balloon_gray.svg"/>Kinetic Theory of Gases</a></figure></div><div style="display:contents" dir="ltr"><figure id="d8f72bf1-9ac4-4cfa-98a6-700b2e3eb558" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/The%20First%20Law%20of%20Thermodynamics%20d8f72bf19ac44cfa98a6700b2e3eb558.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/fire_gray.svg"/>The First Law of Thermodynamics</a></figure></div><div style="display:contents" dir="ltr"><figure id="03ba15a5-25b3-46b0-ad92-9e0f031d0114" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/The%20Second%20Law%20of%20Thermodynamics%2003ba15a525b346b0ad929e0f031d0114.html"><img class="icon" src="Introductory%20Physics%20Notes/The%20Second%20Law%20of%20Thermodynamics/car.png"/>The Second Law of Thermodynamics</a></figure></div><div style="display:contents" dir="ltr"><figure id="7585dab5-a819-49a8-8087-7a5cff4ff42e" class="link-to-page"><a href="Introductory%20Physics%20Notes/Electric%20Charges%20and%20Fields%207585dab5a81949a880877a5cff4ff42e.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/flash_gray.svg"/>Electric Charges and Fields</a></figure></div><div style="display:contents" dir="ltr"><figure id="740be111-4885-4a26-a06c-6d1b91d21b22" class="link-to-page"><a href="Introductory%20Physics%20Notes/Gauss%E2%80%99s%20Law%20740be11148854a26a06c6d1b91d21b22.html"><img class="icon" src="Introductory%20Physics%20Notes/Gauss%E2%80%99s%20Law/sphere.png"/>Gauss’s Law</a></figure></div><div style="display:contents" dir="ltr"><figure id="fb4f937f-429d-45de-ada6-3ae179213360" class="link-to-page"><a href="Introductory%20Physics%20Notes/Electric%20Potential%20fb4f937f429d45deada63ae179213360.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/battery-charging_gray.svg"/>Electric Potential</a></figure></div><div style="display:contents" dir="ltr"><figure id="abb3cde3-baa8-4779-bc34-431833cb74c3" class="link-to-page"><a href="Introductory%20Physics%20Notes/Capacitance%20abb3cde3baa84779bc34431833cb74c3.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/battery_gray.svg"/>Capacitance</a></figure></div><div style="display:contents" dir="ltr"><figure id="c61aea42-6abd-48b2-9ee9-a70ed3fc454f" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Current%20and%20Resistance%20c61aea426abd48b29ee9a70ed3fc454f.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/electric-plug_gray.svg"/>Current and Resistance</a></figure></div><div style="display:contents" dir="ltr"><figure id="5756c612-4768-434a-a579-495652d96825" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Direct-Current%20Circuits%205756c6124768434aa579495652d96825.html"><img class="icon" src="Introductory%20Physics%20Notes/Direct-Current%20Circuits/electricity.png"/>Direct-Current Circuits</a></figure></div><div style="display:contents" dir="ltr"><figure id="e87694cc-4f7e-4fd4-9981-f55bf191fbfc" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Magnetic%20Forces%20and%20Fields%20e87694cc4f7e4fd49981f55bf191fbfc.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/magnet_gray.svg"/>Magnetic Forces and Fields</a></figure></div><div style="display:contents" dir="ltr"><figure id="4e24e66a-d6d8-46c0-a14e-1644dd016044" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Sources%20of%20Magnetic%20Fields%204e24e66ad6d846c0a14e1644dd016044.html"><img class="icon" src="Introductory%20Physics%20Notes/Sources%20of%20Magnetic%20Fields/magnetic-field.png"/>Sources of Magnetic Fields</a></figure></div><div style="display:contents" dir="ltr"><figure id="ea169fd2-c9cb-431b-945c-33b4cdf24112" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Electromagnetic%20Induction%20ea169fd2c9cb431b945c33b4cdf24112.html"><img class="icon" src="Introductory%20Physics%20Notes/Electromagnetic%20Induction/battery.png"/>Electromagnetic Induction</a></figure></div><div style="display:contents" dir="ltr"><figure id="9fff70fd-0be6-487f-b180-cdc9cfd9adab" class="link-to-page"><a href="Introductory%20Physics%20Notes/Inductance%209fff70fd0be6487fb180cdc9cfd9adab.html"><img class="icon" src="Introductory%20Physics%20Notes/Inductance/inductor.png"/>Inductance</a></figure></div><div style="display:contents" dir="ltr"><figure id="34c848a5-5bed-44b7-aef9-e6ea427bd45f" class="link-to-page"><a href="Introductory%20Physics%20Notes/Alternating-Current%20Circuits%2034c848a55bed44b7aef9e6ea427bd45f.html"><img class="icon" src="Introductory%20Physics%20Notes/Alternating-Current%20Circuits/alternate.png"/>Alternating-Current Circuits</a></figure></div><div style="display:contents" dir="ltr"><figure id="6975c9ce-697d-4302-aaf9-d7f98276876e" class="link-to-page"><a href="Introductory%20Physics%20Notes/Electromagnetic%20Waves%206975c9ce697d4302aaf9d7f98276876e.html"><img class="icon" src="Introductory%20Physics%20Notes/Electromagnetic%20Waves/music.png"/>Electromagnetic Waves</a></figure></div><div style="display:contents" dir="ltr"><figure id="0542b487-445c-4a42-ad62-bb448f939e41" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/The%20Nature%20of%20Light%200542b487445c4a42ad62bb448f939e41.html"><img class="icon" src="Introductory%20Physics%20Notes/The%20Nature%20of%20Light/idea.png"/>The Nature of Light</a></figure></div><div style="display:contents" dir="ltr"><figure id="c0511615-5c2a-4078-bd0c-5ab21d50309b" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Geometric%20Optics%20and%20Image%20Formation%20c05116155c2a4078bd0c5ab21d50309b.html"><img class="icon" src="Introductory%20Physics%20Notes/Geometric%20Optics%20and%20Image%20Formation/sun-beams.png"/>Geometric Optics and Image Formation</a></figure></div><div style="display:contents" dir="ltr"><figure id="eda6ec19-8b52-41fb-8319-60ebdff857d8" class="block-color-default link-to-page"><a href="Introductory%20Physics%20Notes/Interference%20eda6ec198b5241fb831960ebdff857d8.html"><img class="icon" src="Introductory%20Physics%20Notes/Interference/resonance.png"/>Interference</a></figure></div><div style="display:contents" dir="ltr"><figure id="85dfd9f5-7e74-41cd-a229-a66d068ed1e0" class="link-to-page"><a href="Introductory%20Physics%20Notes/Diffraction%2085dfd9f57e7441cda229a66d068ed1e0.html"><img class="icon" src="Introductory%20Physics%20Notes/Diffraction/diffraction.png"/>Diffraction</a></figure></div><div style="display:contents" dir="ltr"><figure id="53bcac45-7e93-4d8a-86a0-6dcbde4fa165" class="link-to-page"><a href="Introductory%20Physics%20Notes/Special%20Relativity%2053bcac457e934d8a86a06dcbde4fa165.html"><img class="icon" src="Introductory%20Physics%20Notes/Special%20Relativity/clock.png"/>Special Relativity</a></figure></div><div style="display:contents" dir="ltr"><figure id="d07c881b-c086-4faa-98d5-6b56c751c98e" class="link-to-page"><a href="Introductory%20Physics%20Notes/Photons%20and%20Matter%20Waves%20d07c881bc0864faa98d56b56c751c98e.html"><img class="icon" src="Introductory%20Physics%20Notes/Photons%20and%20Matter%20Waves/wave-sound.png"/>Photons and Matter Waves</a></figure></div><div style="display:contents" dir="ltr"><figure id="4a245b00-97e7-4eb4-942a-95fd9eae6454" class="link-to-page"><a href="Introductory%20Physics%20Notes/Quantum%20Mechanics%204a245b0097e74eb4942a95fd9eae6454.html"><img class="icon" src="Introductory%20Physics%20Notes/Quantum%20Mechanics/wavefunction.png"/>Quantum Mechanics</a></figure></div><div style="display:contents" dir="ltr"><figure id="1543ee38-e7e5-8019-94ec-ca3464f3738f" class="link-to-page"><a href="Introductory%20Physics%20Notes/Atomic%20Structure%201543ee38e7e5801994ecca3464f3738f.html"><img class="icon" src="Introductory%20Physics%20Notes/Atomic%20Structure/atomic.png"/>Atomic Structure</a></figure></div><div style="display:contents" dir="ltr"><figure id="1b03ee38-e7e5-801d-b7ee-e185f2fbbd32" class="link-to-page"><a href="Introductory%20Physics%20Notes/Condensed%20Matter%20Physics%201b03ee38e7e5801db7eee185f2fbbd32.html"><img class="icon" src="Introductory%20Physics%20Notes/Condensed%20Matter%20Physics/grid.png"/>Condensed Matter Physics</a></figure></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
