@@ -1,0 +1,761 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Current and Resistance</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c61aea42-6abd-48b2-9ee9-a70ed3fc454f" class="page sans"><header><div class="page-header-icon undefined"><img class="icon notion-static-icon" src="https://www.notion.so/icons/electric-plug_gray.svg"/></div><h1 class="page-title" dir="auto">Current and Resistance</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><h1 id="75556f08-b389-438f-a388-20215cd0f08c" class="">Electrical Current</h1></div><div style="display:contents" dir="auto"><ul id="abf319a8-199e-46a3-b6ba-75dd1d3b3286" class="bulleted-list"><li style="list-style-type:disc">Electrical current is the rate at which electric charge moves past a point</li></ul></div><div style="display:contents" dir="auto"><figure id="76c5f94d-62b3-47cc-9603-fe9a0b3f1dcc" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>I</mi><mrow><mi>a</mi><mi>v</mi><mi>e</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi mathvariant="normal">Δ</mi><mi>Q</mi></mrow><mrow><mi mathvariant="normal">Δ</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">I_{ave} = \dfrac{\Delta Q}{\Delta t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">Δ</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">Δ</span><span class="mord mathnormal">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><figure id="3047880d-2422-47d6-8da5-483ebcb44aa5" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mo>=</mo><mfrac><mrow><mi>d</mi><mi>Q</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">I=\dfrac{dQ}{dt}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="abf570cd-5464-4f7c-95d9-b8ea101fa7cb" class="bulleted-list"><li style="list-style-type:disc">Current is scalar</li></ul></div><div style="display:contents" dir="auto"><ul id="183387ee-83ed-4aa2-8c10-0becadb8301f" class="bulleted-list"><li style="list-style-type:disc">Current is measured in <strong>amperes </strong>(<strong>A</strong>)<div style="display:contents" dir="auto"><ul id="8fa5c929-59d1-4853-a4d4-530c98ed4214" class="bulleted-list"><li style="list-style-type:circle">1 Coulomb per second</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="0a83bdb1-9df8-478f-9a76-feecd2c66ed5" class="bulleted-list"><li style="list-style-type:disc">For current to flow, there must be a <strong>circuit</strong><div style="display:contents" dir="auto"><ul id="6aadb8f1-1bbf-445d-93d2-1f80848d1ce2" class="bulleted-list"><li style="list-style-type:circle">A circuit is a complete <strong>path</strong>/<strong>loop</strong></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28d9f148-2503-4da8-928d-1be85749a478" class="bulleted-list"><li style="list-style-type:disc">Schematics are simplified <strong>diagrams </strong>of circuits<div style="display:contents" dir="auto"><ul id="8a921587-de8e-4499-9645-573d8ffa6bd2" class="bulleted-list"><li style="list-style-type:circle">Uses many symbols</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="4907f7f9-2a23-4f96-8992-1bbe2e9e9430" class="bulleted-list"><li style="list-style-type:disc">The <strong>conventional current </strong>goes from the <strong>positive </strong>battery terminal to the <strong>negative</strong><div style="display:contents" dir="auto"><ul id="410fa93c-724d-44a7-8072-21ef603eff01" class="bulleted-list"><li style="list-style-type:circle">However, the actual electron flow in a <strong>conducting metal </strong>(current in most circuits) is in the <strong>opposite </strong>direction<div style="display:contents" dir="auto"><ul id="f647bd74-390a-4bde-b722-d4d5cc13c44f" class="bulleted-list"><li style="list-style-type:square"><strong>Negative </strong>to <strong>positive</strong></li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="3b32f2ed-c025-42d6-821b-3e3a49e99afe" class="bulleted-list"><li style="list-style-type:disc">Depending on the situation, either only negative charges, only positive charges, or both move</li></ul></div><div style="display:contents" dir="auto"><ul id="ac9b4e70-363b-4df2-86f0-7c40c5ff7282" class="bulleted-list"><li style="list-style-type:disc"><strong>Electric fields </strong>are present in conductors and <strong>produce </strong>the <strong>current</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="0b6b85e3-dd23-4296-8c6e-481b725791e1" class="bulleted-list"><li style="list-style-type:disc">For static electricity, charges <strong>redistribute </strong>themselves on the surface of a conductor to reach equilibrium and cancel out the external electric field<div style="display:contents" dir="auto"><ul id="8a066b7d-462f-4645-b54d-cab1abfb699f" class="bulleted-list"><li style="list-style-type:circle">However, in a circuit, the charges are prevented from reaching equilibrium by <strong>external sources of electric potential</strong><div style="display:contents" dir="auto"><ul id="aa9a6f42-bdbc-47c6-ad23-d0f0533a52d5" class="bulleted-list"><li style="list-style-type:square">e.g. batteries</li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="302e7912-4cec-450d-9a91-7df9b73f5dff" class="bulleted-list"><li style="list-style-type:disc">The electric potential provides the energy needed to move the charges<div style="display:contents" dir="auto"><ul id="d7adb5de-9c03-4019-8f43-12ec8d4d536d" class="bulleted-list"><li style="list-style-type:circle">Keeps the charges moving at a <strong>drift velocity</strong></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="2e8308dc-a681-4233-a082-ae63241863bd" class="">Model of Conduction in Metals</h1></div><div style="display:contents" dir="auto"><ul id="439bca69-b620-4e10-a25f-e56911575a79" class="bulleted-list"><li style="list-style-type:disc"><strong>Electrons </strong>within a wire <strong>move chaotically</strong>, zig-zagging and drifting</li></ul></div><div style="display:contents" dir="auto"><ul id="875baf1a-94c1-45e8-a344-4197abd8f3a3" class="bulleted-list"><li style="list-style-type:disc"><strong>Current density </strong>is used when talking about drift velocity, since current is scalar</li></ul></div><div style="display:contents" dir="auto"><ul id="a691c104-b854-4bc4-9ff1-5e3d6058f1a0" class="bulleted-list"><li style="list-style-type:disc"><strong>Electronic signals </strong>move at a<strong> significant fraction of c</strong>, but each <strong>electron </strong>moves on the order of <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span><strong> m/s</strong><div style="display:contents" dir="auto"><ul id="d5749576-7bd2-431f-8706-eb1473ee0bfe" class="bulleted-list"><li style="list-style-type:circle">Electronic signals move so fast due to <strong>each electron pushing the next ones</strong><div style="display:contents" dir="auto"><ul id="8d20245f-f835-4877-bdce-d1dcb0aa8f35" class="bulleted-list"><li style="list-style-type:square">Similar to a shock wave or slinky</li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="683354e5-bcb8-4e8e-b1fd-35aeb9c61cc4" class="bulleted-list"><li style="list-style-type:disc">Good conductors have many<strong> free charges</strong><div style="display:contents" dir="auto"><ul id="ce40c3cd-2cc1-41e7-a181-40c3c089cc3a" class="bulleted-list"><li style="list-style-type:circle">Good conductors that are metals have many <strong>free electrons</strong><div style="display:contents" dir="auto"><ul id="56ef00f3-ea5d-4384-8273-4b2395d01b7e" class="bulleted-list"><li style="list-style-type:square">The electrons move almost randomly</li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="94e94c7b-3fd2-453d-afd1-5de7d828ca31" class="bulleted-list"><li style="list-style-type:disc">The <strong>drift velocity </strong><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">v_d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> is the <strong>average velocity </strong>of the <strong>free charges</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="d93c6ce9-d86f-4a42-a285-51ba181c8df9" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>v</mi><mi>d</mi></msub><mo>=</mo><mfrac><mi>I</mi><mrow><mi>n</mi><mi>q</mi><mi>A</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">v_d = \dfrac{I}{nqA}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2408em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord mathnormal">A</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="674eb0ea-1bfa-4f45-849c-1a742365194c" class="bulleted-list"><li style="list-style-type:disc">Where <strong>I</strong> is the <strong>current</strong>,<strong> n</strong> is the <strong>free charge density</strong>,<strong> q</strong> is the <strong>charge </strong>of each <strong>carrier</strong>, and <strong>A</strong> is the <strong>cross-sectional area</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="1fd30d06-1552-4800-9649-778baac6554c" class="bulleted-list"><li style="list-style-type:disc"><div style="display:contents" dir="ltr"><figure id="4ef7669a-4cac-441e-98c8-ab7c330dbed2" class="image"><a href="https://lh7-us.googleusercontent.com/1IcA3FDSQXyqEkBSLfKI0-A1GrjI1kiijSlKEBYr2VrQ-wk4zEl_jChp-mAihClTQbwEJmc49uEHwrdwSMv1IrkVG90lCB_5JtR1JkqUhAdK2lOxmxg9wZgxa2-aLlSqN6UTl0p-atq90zZ9sI1XEuY"><img style="width:321px" src="https://lh7-us.googleusercontent.com/1IcA3FDSQXyqEkBSLfKI0-A1GrjI1kiijSlKEBYr2VrQ-wk4zEl_jChp-mAihClTQbwEJmc49uEHwrdwSMv1IrkVG90lCB_5JtR1JkqUhAdK2lOxmxg9wZgxa2-aLlSqN6UTl0p-atq90zZ9sI1XEuY"/></a></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="3f96fffe-785c-446e-916e-77b878b1852c" class="bulleted-list"><li style="list-style-type:disc">For electrons, drift velocity travels <strong>opposite </strong>to the electric field and current</li></ul></div><div style="display:contents" dir="auto"><ul id="f0090713-d392-4233-a536-43d532aaa553" class="bulleted-list"><li style="list-style-type:disc">Electron collisions transfer energy to the atoms of the conductor</li></ul></div><div style="display:contents" dir="auto"><ul id="b5eeb022-5538-432b-bcb9-70287001819e" class="bulleted-list"><li style="list-style-type:disc">The electric field moves the electrons, doing work, but it<strong> doesn’t increase the kinetic energy of the charges</strong><div style="display:contents" dir="auto"><ul id="1c3a022f-f2d7-4c42-8c81-c6760506551b" class="bulleted-list"><li style="list-style-type:circle">The work is transferred to the atoms of the conductor<div style="display:contents" dir="auto"><ul id="b78e1449-ff35-4389-bcef-4353bfd59bb4" class="bulleted-list"><li style="list-style-type:square">Increases <strong>temperature </strong>usually</li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="43658053-7d73-4847-9266-bf906bf57abc" class="bulleted-list"><li style="list-style-type:disc">Sometimes, the velocity of an electron can be much greater than its drift velocity<div style="display:contents" dir="auto"><ul id="d0ccd025-09cc-4eb4-9d9e-0ab65cc3763a" class="bulleted-list"><li style="list-style-type:circle">Since atoms in a metallic conductor are in a <strong>lattice</strong>, some electrons don’t experience a strong attraction to the nucleus<div style="display:contents" dir="auto"><ul id="0daa9ba3-0ae0-401c-9e12-5b257ff46e78" class="bulleted-list"><li style="list-style-type:square">Are <strong>free electrons</strong>; aren’t bound</li></ul></div><div style="display:contents" dir="auto"><ul id="a7fc86e8-d0bb-44d3-a0be-f0845f61aeda" class="bulleted-list"><li style="list-style-type:square">Can move freely in a<strong> sea of electrons</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="e1aad5b1-3499-4ac0-adb7-bde5343472a8" class="bulleted-list"><li style="list-style-type:square">They <strong>accelerate </strong>under the influence of an electric field</li></ul></div><div style="display:contents" dir="auto"><ul id="4920857e-496f-4e7f-84c5-fc91c3aa2ce4" class="bulleted-list"><li style="list-style-type:square">Collide with other atoms and electrons, increasing temperature</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="d1f7895b-22f7-4b51-914d-2cf00f6ba055" class="bulleted-list"><li style="list-style-type:circle">Free electrons don’t exist in insulators due to their atomic arrangement</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="825c5e3e-b0bc-466c-8af9-de8cff9b7b30" class="bulleted-list"><li style="list-style-type:disc">The greater the <strong>diameter</strong>, the greater the<strong> current-carrying capacity</strong><div style="display:contents" dir="auto"><ul id="469bad58-73e9-4fcb-b47d-e81663df964b" class="bulleted-list"><li style="list-style-type:circle">Wire diameter is measured in <strong>gauge</strong><div style="display:contents" dir="auto"><ul id="baca9168-ff6f-4e19-a608-dc85ae30c3a4" class="bulleted-list"><li style="list-style-type:square">The <strong>larger </strong>the <strong>gauge</strong>, the <strong>thinner </strong>the <strong>wire</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="a1e6197b-8f9a-45b0-a42c-c22d1f8714cd" class="bulleted-list"><li style="list-style-type:square">Common household wiring ranges from <strong>10-gauge</strong> to <strong>14-gauge</strong></li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="20de4b0c-8623-4da3-b5bc-eeff3eb2e041" class="bulleted-list"><li style="list-style-type:disc"><strong>Current density</strong>, a <strong>vector </strong>quantity, is the <strong>flow of charge</strong> through an <strong>infinitesimal area</strong>, <strong>per unit area</strong><div style="display:contents" dir="auto"><ul id="2d282337-88d7-45c3-b73c-e855f69adb78" class="bulleted-list"><li style="list-style-type:circle">Includes the <strong>local magnitude </strong>and <strong>direction </strong>of the charge flow</li></ul></div><div style="display:contents" dir="auto"><ul id="6b16edba-d811-4df3-bbce-507a7141521c" class="bulleted-list"><li style="list-style-type:circle">Measured in <strong>ampere per metre squared</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="b642b4d1-730f-48b6-a455-8b8367bcfd6c" class="bulleted-list"><li style="list-style-type:circle"><strong>Direction </strong>is the direction of <strong>net positive charge flow</strong> through the area</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2d04ef44-3e96-4d1e-8fdb-4156b8d8e96a" class="bulleted-list"><li style="list-style-type:disc"><strong>Infinitesimal current</strong> is the <strong>dot product </strong>of<strong> current density </strong>and<strong> infinitesimal area</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="0fd50c55-1889-4918-8d8c-d93e326e999c" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>I</mi><mo>=</mo><mover accent="true"><mi>J</mi><mo>⃗</mo></mover><mo>⋅</mo><mi>d</mi><mover accent="true"><mi>A</mi><mo>⃗</mo></mover><mo>=</mo><mi>J</mi><mi>d</mi><mi>A</mi><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">dI = \vec{J} \cdot d\vec{A} = JdA\cos(\theta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9663em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0688em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9663em;"></span><span class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">A</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0966em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Jd</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="fb938ee3-4a93-44b1-818f-403c70411e15" class="bulleted-list"><li style="list-style-type:disc">The <strong>total current </strong>is found by integrating the <strong>current density </strong>over the <strong>area</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="108d6ea8-08cc-49a0-ba36-d8bb1d28bda3" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mo>=</mo><mo>∫</mo><msub><mo>∫</mo><mrow><mi>a</mi><mi>r</mi><mi>e</mi><mi>a</mi></mrow></msub><mover accent="true"><mi>J</mi><mo>⃗</mo></mover><mo>⋅</mo><mi>d</mi><mover accent="true"><mi>A</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">I=\int \int_{area} \vec{J} \cdot d{\vec{A}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2719em;vertical-align:-0.9119em;"></span><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.6106em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">re</span><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0688em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9663em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">A</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0966em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="89ee2578-6792-4aca-a567-f6d6b54f4c33" class="bulleted-list"><li style="list-style-type:disc">The <strong>magnitude </strong>of the <strong>current density </strong>is the <strong>current per unit area</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="8f20d574-6761-4021-ab58-7d266de27d41" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>J</mi><mo>=</mo><mfrac><mi>I</mi><mi>A</mi></mfrac></mrow><annotation encoding="application/x-tex">J = \dfrac{I}{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">A</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="41f10ef4-7825-44b3-9958-d0adfce2f6f5" class="bulleted-list"><li style="list-style-type:disc">The <strong>current density </strong>can also be written in terms of the <strong>drift velocity</strong><div style="display:contents" dir="auto"><figure id="2a5a82ff-faf3-44de-b2e5-cbbb194d6bf7" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>J</mi><mo>=</mo><mi>n</mi><mi>q</mi><msub><mi>v</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">J = nqv_d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></div></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="e8f3e54c-79b8-4ae4-b511-75ab29e24bcf" class="bulleted-list"><li style="list-style-type:disc">If<strong> q</strong> is <strong>positive</strong>, the electron drift speed is in the <strong>same direction </strong>as the electric field</li></ul></div><div style="display:contents" dir="auto"><ul id="93510caf-b9f4-47cb-9fe4-8535a789ebf7" class="bulleted-list"><li style="list-style-type:disc">If<strong> q </strong>is <strong>negative</strong>, the electron drift speed is in the <strong>opposite direction </strong>as the electric field</li></ul></div><div style="display:contents" dir="auto"><h1 id="5f7f7819-61e9-4a3a-a8cf-8d8b4de71c7b" class="">Resistivity and Resistance</h1></div><div style="display:contents" dir="auto"><ul id="01cec1ae-3b50-4d61-869e-71bfcde41122" class="bulleted-list"><li style="list-style-type:disc"><strong>Resistivity </strong>is a measure of how much a material resists the flow of charges</li></ul></div><div style="display:contents" dir="auto"><ul id="b941c643-ea04-411d-9e43-e63a583e3508" class="bulleted-list"><li style="list-style-type:disc">When a circuit is turned on, the <strong>current density </strong>depends on both the <strong>electric field </strong>created by the electric potential source, and the <strong>properties of the material</strong><div style="display:contents" dir="auto"><ul id="5a910eba-1469-441b-a1b8-2d9000393bb7" class="bulleted-list"><li style="list-style-type:circle">In some materials, the <strong>current density </strong>is <strong>approximately proportional </strong>to the <strong>electric field</strong><div style="display:contents" dir="auto"><figure id="4b2d091c-9681-4fd8-82b5-51b39f12a439" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>J</mi><mo>⃗</mo></mover><mo>=</mo><mi>σ</mi><mover accent="true"><mi>E</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{J}=\sigma \vec{E}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9663em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0688em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9663em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1522em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span></span></span></span></span></div></figure></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="14fb6f56-bd00-4f37-ad09-acf0a06cafd5" class="bulleted-list"><li style="list-style-type:disc">Where<strong> 𝜎 </strong>is the <strong>electrical conductivity</strong>, a measure of the material’s <strong>ability to conduct/transmit electricity</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="154091a3-b203-4d30-a402-2e9f125f8fe9" class="bulleted-list"><li style="list-style-type:disc"><strong>Intrinsic </strong>property of a material</li></ul></div><div style="display:contents" dir="auto"><ul id="306178ff-eb95-42e8-b2f5-eb92c7f0a035" class="bulleted-list"><li style="list-style-type:disc"><strong>Conductors </strong>have a <strong>higher electrical conductivity </strong>than <strong>insulators</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="b55c0d8c-76b5-4e58-b3ba-9a0680492f09" class="bulleted-list"><li style="list-style-type:disc"><strong>𝜎 </strong>is measured in <strong>amperes per volt-metre </strong>or<strong> inverse ohm-metres </strong>(Ω*m)-1</li></ul></div><div style="display:contents" dir="auto"><ul id="97ffe915-6e4d-4a91-ab40-edf67ab63f64" class="bulleted-list"><li style="list-style-type:disc">The <strong>ohm </strong>(<strong>Ω</strong>) is the <strong>unit </strong>of <strong>resistance</strong><div style="display:contents" dir="auto"><ul id="ae8857ea-b15d-4153-8d9c-ad6c0d1ded0e" class="bulleted-list"><li style="list-style-type:circle">1 ohm is 1 volt per ampere</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="66121e4b-b062-451e-904b-3f29ee4d99c2" class="bulleted-list"><li style="list-style-type:disc"><strong>Resistivity </strong>(<strong>⍴</strong>)<strong> </strong>is a measure of how strongly a material opposes the flow of current<div style="display:contents" dir="auto"><figure id="33092a51-8484-4885-a148-6f4f56e6c91c" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mn>1</mn><mi>σ</mi></mfrac></mrow><annotation encoding="application/x-tex">\rho = \dfrac{1}{\sigma}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="cf291fc9-08bb-4438-8b85-f3450492b3ed" class="bulleted-list"><li style="list-style-type:circle">Measured in ohm-metres</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2b0f8bbe-0bcf-426a-ad02-653e89b85c51" class="bulleted-list"><li style="list-style-type:disc">Resistivity can also be written in terms of the <strong>electric field </strong>and <strong>current density</strong><div style="display:contents" dir="auto"><figure id="43041675-ddd9-4cf3-b7ec-e57099924934" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mi>E</mi><mi>J</mi></mfrac></mrow><annotation encoding="application/x-tex">\rho = \dfrac{E}{J}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="b04eded5-4be3-48fa-9ca0-1104cd85381d" class="bulleted-list"><li style="list-style-type:circle">The <strong>greater </strong>the <strong>resistivity</strong>, the <strong>greater </strong>the <strong>field needed </strong>to produce a given <strong>current density</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="6d575668-9ea3-4761-b1f9-85352cce29d7" class="bulleted-list"><li style="list-style-type:circle">The <strong>lower </strong>the <strong>resistivity</strong>, the <strong>greater </strong>the <strong>current density </strong>a electrical field produces</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="b97f6b0e-3544-4a4c-9521-26e90c19056b" class="bulleted-list"><li style="list-style-type:disc">The <strong>electric field </strong>through an <strong>electric potential source </strong>is equal to the <strong>resistivity </strong>and the <strong>current density</strong><div style="display:contents" dir="auto"><figure id="22f0ee3d-ce68-47b8-8b16-95088d96952e" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>E</mi><mo>⃗</mo></mover><mo>=</mo><mi>ρ</mi><mover accent="true"><mi>J</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{E} = \rho \vec{J}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9663em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1522em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1608em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0688em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span></span></span></span></span></div></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="adb68e19-29b1-4dc0-af1d-9a0ff51e79b1" class="bulleted-list"><li style="list-style-type:disc"><strong>Resistivity </strong>is also dependent on the <strong>temperature</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="6a7c2f54-5f70-42ff-8c2b-a7e63b05ee71" class="bulleted-list"><li style="list-style-type:disc">In many materials, resistivity is approximately linearly dependent on temperature<div style="display:contents" dir="auto"><figure id="28894533-80c6-4756-9dfe-478d47850376" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>ρ</mi><mo>=</mo><msub><mi>ρ</mi><mn>0</mn></msub><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>α</mi><mi mathvariant="normal">Δ</mi><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\rho = \rho_0(1+\alpha\Delta T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span></span></div></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="3924736c-1011-466c-9ba4-82114b33fd48" class="bulleted-list"><li style="list-style-type:disc">Where <strong>ΔT</strong> is the change from the <strong>initial temperature </strong>that ⍴0 is measured at; usually change from 20 C</li></ul></div><div style="display:contents" dir="auto"><ul id="0907d713-d46d-4c8b-ac8c-0eb2612643c1" class="bulleted-list"><li style="list-style-type:disc"><strong>Resistance </strong>is the ratio of the <strong>voltage </strong>to the <strong>current</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="bec3efca-0899-4ab6-a171-68a68f32b860" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>=</mo><mfrac><mi>V</mi><mi>I</mi></mfrac></mrow><annotation encoding="application/x-tex">R=\dfrac{V}{I}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="b1f211d3-7672-46b7-a17f-33cf1354ec3b" class="bulleted-list"><li style="list-style-type:disc"><strong>Resistance </strong>is a measure of <strong>how difficult </strong>it is to <strong>pass current through </strong>a <strong>component</strong><div style="display:contents" dir="auto"><ul id="b777fa10-116b-439e-8920-56429dd4e2cf" class="bulleted-list"><li style="list-style-type:circle">Dependent on <strong>resistivity</strong></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><figure id="e31b9968-15cc-42fb-bd3c-d12acfdbbacf" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>=</mo><mfrac><mrow><mi>ρ</mi><mi>L</mi></mrow><mi>A</mi></mfrac></mrow><annotation encoding="application/x-tex">R=\dfrac{\rho L}{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">A</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="c8baa30b-84c2-4094-8220-5eabdebc03d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Resistors </strong>are <strong>circuit components </strong>that <strong>reduce current flow</strong> or provide a <strong>voltage drop</strong><div style="display:contents" dir="auto"><ul id="444213a9-09f5-4f02-a410-eaa18f987669" class="bulleted-list"><li style="list-style-type:circle">There are 2 symbols for a resistor<div style="display:contents" dir="ltr"><figure id="86858369-de22-4056-ac31-2e7cccb0da64" class="image"><a href="https://lh7-us.googleusercontent.com/qCKklXkr0sBpY7dH4nv-CydflxQzacfZskRFCvvVfZ6aMmPA9vt8GpindSb3-ILz310PdtJYHcI5zD1ukGh7_wkJvkEsR9JPuQv2OhfctLF856CwdpHGJDPCK0BvnRsLE71r2OJZHxBcTOb1ymqofoU"><img style="width:269px" src="https://lh7-us.googleusercontent.com/qCKklXkr0sBpY7dH4nv-CydflxQzacfZskRFCvvVfZ6aMmPA9vt8GpindSb3-ILz310PdtJYHcI5zD1ukGh7_wkJvkEsR9JPuQv2OhfctLF856CwdpHGJDPCK0BvnRsLE71r2OJZHxBcTOb1ymqofoU"/></a></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="00cbfb3b-0a9b-457d-bcd4-404810322236" class="bulleted-list"><li style="list-style-type:circle"><strong>Carbon </strong>is commonly used as a resistor<div style="display:contents" dir="auto"><ul id="350b42e8-d224-4c20-9dc5-ae6ef4dc85a6" class="bulleted-list"><li style="list-style-type:square">Carbon tracks around a <strong>ceramic core</strong>, with 2 copper leads</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="c5b50720-572f-4a84-88b0-2354e37fb929" class="bulleted-list"><li style="list-style-type:circle"><strong>Metal film</strong> is also commonly used<div style="display:contents" dir="auto"><ul id="15f4bae9-7d2f-4894-a635-bf4546bcd42c" class="bulleted-list"><li style="list-style-type:square">Metal oxide tracks around a <strong>ceramic core</strong>, with 2 copper leads</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="57e53928-ee31-4eb0-8875-7adc1e5b6038" class="bulleted-list"><li style="list-style-type:circle">Has 4 coloured bands<div style="display:contents" dir="auto"><ul id="b8a02fe5-e3a6-48d2-84da-625f71579444" class="bulleted-list"><li style="list-style-type:square"><div style="display:contents" dir="ltr"><figure id="1036bbab-4446-4729-8826-60e627ac844b" class="image"><a href="https://lh7-us.googleusercontent.com/j3Edh_GJE3ibf4ZusHFmc-WMbKe1ohTzeHObVr4jfizNFZXo6E4hRCtsxZf6j1yEmP3iEYlt7KhyZ0YXzjv9YaAA2HEuFrrSoqDQiQc9dUtv2sHoiIvJSlJQdfXl1DqyHRg-thdOU41uEfNdQhTmcQw"><img style="width:409px" src="https://lh7-us.googleusercontent.com/j3Edh_GJE3ibf4ZusHFmc-WMbKe1ohTzeHObVr4jfizNFZXo6E4hRCtsxZf6j1yEmP3iEYlt7KhyZ0YXzjv9YaAA2HEuFrrSoqDQiQc9dUtv2sHoiIvJSlJQdfXl1DqyHRg-thdOU41uEfNdQhTmcQw"/></a></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="fc06ac00-a5bc-4fc5-860d-9e0f0fa63aa6" class="bulleted-list"><li style="list-style-type:square">The<strong> first 2 bands</strong> give the <strong>first </strong>and <strong>second digit </strong>respectively</li></ul></div><div style="display:contents" dir="auto"><ul id="e997980b-8eee-4261-94f1-7e2d7965c322" class="bulleted-list"><li style="list-style-type:square">The <strong>third band </strong>gives the <strong>multiplier</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="d0bbb643-c02f-4f64-87f5-aedf25f6ef08" class="bulleted-list"><li style="list-style-type:square">The<strong> fourth band</strong> gives the <strong>tolerance</strong><div style="display:contents" dir="auto"><ul id="3d903e36-9c76-4dfc-97f5-b772e704e774" class="bulleted-list"><li style="list-style-type:disc">Similar to uncertainty</li></ul></div></li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="6b7134f2-1e42-4dfc-8513-5077c706524d" class="bulleted-list"><li style="list-style-type:disc">Since <strong>resistance </strong>is proportional to resistivity, it’s also <strong>linearly dependent </strong>on <strong>temperature</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="5f872eb3-854b-4f7a-9c3e-a3330e2670cd" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>=</mo><msub><mi>R</mi><mn>0</mn></msub><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>α</mi><mi mathvariant="normal">Δ</mi><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R=R_0(1+\alpha\Delta T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><h1 id="bb7a8d40-027d-4c38-9577-3f89bec59e90" class="">Ohm’s Law</h1></div><div style="display:contents" dir="auto"><ul id="f29e7898-5b2c-4c3c-99af-8a7d2272035c" class="bulleted-list"><li style="list-style-type:disc">The <strong>current </strong>that flows through most substances is <strong>directly proportional </strong>to the <strong>voltage </strong>applied to it<div style="display:contents" dir="auto"><ul id="6d6256c0-03d8-49eb-b89b-20ebeab160d2" class="bulleted-list"><li style="list-style-type:circle">R = IV<div style="display:contents" dir="auto"><ul id="ec46341c-0b09-48fd-94fd-19324cdca66f" class="bulleted-list"><li style="list-style-type:square">A cause-and-effect relationship, where <strong>voltage causes the current</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="6fdeb44d-28e5-4cae-9c20-101fb2162afa" class="bulleted-list"><li style="list-style-type:square">A substance in which this applies is called <strong>ohmic</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="7d2437d1-f675-4490-96d0-6492d872db38" class="bulleted-list"><li style="list-style-type:square">A substance in which this doesn’t apply is called <strong>nonohmic</strong></li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="8683ebd9-7a70-43f8-8e1a-705c498c12c7" class="bulleted-list"><li style="list-style-type:disc"><strong>Ohm’s law</strong> relates <strong>voltage</strong>, <strong>current</strong>, and <strong>resistance</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="06343fec-7ef2-476e-8db3-14e27b435896" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mo>=</mo><mi>I</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">V=IR</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="9f63dff0-a115-4f55-807f-2887189b9a19" class="bulleted-list"><li style="list-style-type:disc">An example of a nonohmic device is the <strong>diode</strong><div style="display:contents" dir="auto"><ul id="1c9817ac-77e6-4cf0-b8e8-fa74f9ac414f" class="bulleted-list"><li style="list-style-type:circle">A diode allows <strong>current </strong>flow in only<strong> 1 direction</strong></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="ec771371-1aa8-421c-ae93-13f486fcfe3b" class="">Electrical Energy and Power</h1></div><div style="display:contents" dir="auto"><ul id="7600c927-28a9-4d17-b97c-5fd37bbb74b7" class="bulleted-list"><li style="list-style-type:disc">Power, often associated with electricity, is the<strong> rate of work over time</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="2f7eb2eb-b8ac-4e59-a63b-4baf6a04d122" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo>=</mo><mi>I</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">P=IV</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="7a34f1e5-ffc9-4c8d-8b01-e058807bfec5" class="bulleted-list"><li style="list-style-type:disc">Either the current or voltage can be subbed out to include resistance, to find the <strong>power dissipated by a resistor</strong></li></ul></div><div style="display:contents" dir="auto"><figure id="57ff601e-19ef-4c61-a07e-e0a0d791c50a" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo>=</mo><msup><mi>I</mi><mn>2</mn></msup><mi>R</mi><mo>=</mo><mfrac><msup><mi>V</mi><mn>2</mn></msup><mi>R</mi></mfrac></mrow><annotation encoding="application/x-tex">P = I^2R = \dfrac{V^2}{R}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="51cad307-77f0-4b13-9835-3cd0245bf3a3" class="bulleted-list"><li style="list-style-type:disc"><strong>Fuses </strong>are components that protect a circuit from high currents<div style="display:contents" dir="auto"><ul id="c3af756e-4811-4459-a750-466fc265dbac" class="bulleted-list"><li style="list-style-type:circle">Utilise the <strong>dissipated heat</strong><div style="display:contents" dir="auto"><ul id="05cf3f49-a378-4b02-891e-994528ff4c76" class="bulleted-list"><li style="list-style-type:square">The dissipated heat melts the wire portion (has low melting point) and breaks the fuse at the rated current</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="918270b9-74af-4829-af86-97952485f75e" class="bulleted-list"><li style="list-style-type:circle">Must be replaced afterwards</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="ca9d4d5e-536b-41e8-96db-4b2f73c7b11d" class="bulleted-list"><li style="list-style-type:disc">The <strong>total energy </strong>consumed at a <strong>power </strong>for a certain amount of <strong>time</strong>:</li></ul></div><div style="display:contents" dir="auto"><figure id="5d536c20-c074-40cd-8749-92c6930f0090" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><mo>∫</mo><mi>P</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">E=\int Pdt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2222em;vertical-align:-0.8622em;"></span><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="b2ee1a5c-a3c4-4e8e-99ca-f5f95f09d5ed" class="bulleted-list"><li style="list-style-type:disc">If the power is delivered at a constant rate</li></ul></div><div style="display:contents" dir="auto"><figure id="5bbe44ae-4e7d-4a92-bad0-e16bd15b4069" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><mi>P</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">E=Pt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">Pt</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><ul id="a0a01f2d-1485-446c-8b80-97ac0e139db7" class="bulleted-list"><li style="list-style-type:disc">Energy bills use the unit of<strong> kilowatt-hours </strong>(<strong>kWh</strong>)<div style="display:contents" dir="auto"><ul id="79a3e541-f7e3-47bd-89e0-924cbf2cff2f" class="bulleted-list"><li style="list-style-type:circle">1 kilowatt-hour is the energy consumed by a power of 1 kilowatt running for 1 hour</li></ul></div><div style="display:contents" dir="auto"><ul id="82b6ea9d-7ed3-4508-b4bc-fd6559f51ac6" class="bulleted-list"><li style="list-style-type:circle">1 kWh = 3.6 * 10^6 J</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="7337b1d7-0a5d-467c-b7d5-1fbc6cd3194a" class="">Superconductors</h1></div><div style="display:contents" dir="auto"><ul id="a0c0f74d-986a-45e6-aa59-5c0f1858d28e" class="bulleted-list"><li style="list-style-type:disc">The heavy majority of any electric current produces <strong>heat</strong><div style="display:contents" dir="auto"><ul id="f8721893-01e1-4709-b3d2-fced9fc5b11e" class="bulleted-list"><li style="list-style-type:circle">Due to most conductors having some resistance</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="7a6f87e6-ad0b-4eeb-897b-36ababd0fb67" class="bulleted-list"><li style="list-style-type:disc">At the <strong>critical temperature TC</strong>, some materials become <strong>superconductors</strong><div style="display:contents" dir="auto"><ul id="c8a010bc-3a59-4ba3-b170-701d82291e73" class="bulleted-list"><li style="list-style-type:circle">Superconductors have <strong>zero resistance</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="a592e94d-1cfc-42e2-81ac-3b829b4f7bb5" class="bulleted-list"><li style="list-style-type:circle">This phenomenon is called <strong>superconductivity</strong></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="49bf5bd5-376d-469c-8da2-2bc0fee33808" class="bulleted-list"><li style="list-style-type:disc">Mercury becomes a superconductor at 4.2 K</li></ul></div><div style="display:contents" dir="auto"><ul id="1daad83d-ff51-4b54-9aeb-7b19ed1be172" class="bulleted-list"><li style="list-style-type:disc">In the past years, many new superconducting materials have become available</li></ul></div><div style="display:contents" dir="auto"><ul id="2be7692e-cf59-440e-902e-c6e222354a65" class="bulleted-list"><li style="list-style-type:disc">In a superconductor, a current persists without a voltage source once its been introduced</li></ul></div><div style="display:contents" dir="auto"><ul id="ab7d5e51-649c-4d53-9fdf-fa6b3c8d9cdb" class="bulleted-list"><li style="list-style-type:disc">Another property of superconductivity is the <strong>exclusion </strong>of <strong>magnetic fields</strong><div style="display:contents" dir="auto"><ul id="1fedc6d6-4f33-4a11-bca8-091db0e128d5" class="bulleted-list"><li style="list-style-type:circle">Called the <strong>Meissner effect</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3f97e3ae-4885-4b83-8e4e-9261c44bcf74" class="bulleted-list"><li style="list-style-type:circle">A permanent magnet will <strong>levitate </strong>in a stable position above the superconductor</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="ccd2e083-330b-490f-b587-487fe9fbf0fe" class="bulleted-list"><li style="list-style-type:disc">Superconductors can be used to create <strong>superconducting magnets</strong><div style="display:contents" dir="auto"><ul id="d6b6ace1-d5d7-4081-8b85-903cb887d675" class="bulleted-list"><li style="list-style-type:circle">10 times stronger than the strongest electromagnets</li></ul></div><div style="display:contents" dir="auto"><ul id="533e5b1a-f82e-40da-92b8-da60cd98c3ac" class="bulleted-list"><li style="list-style-type:circle">Used in MRIs</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="c3fd36bf-62fc-465b-8d9b-31389149dd59" class="bulleted-list"><li style="list-style-type:disc">The <strong>SQUID </strong>(superconducting quantum interference device) is a <strong>magnetometer </strong>that measures<strong> extremely small magnetic fields</strong><div style="display:contents" dir="auto"><ul id="76e7aa7b-6bed-40b8-8662-0246d6d7524a" class="bulleted-list"><li style="list-style-type:circle">Based on superconducting loops containing <strong>Josephson junctions</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="74f4b048-de60-49da-a05d-ec9bd9f6633d" class="bulleted-list"><li style="list-style-type:circle">Based off the Josephson effect</li></ul></div></li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
